@@ -1,4 +1,5 @@
-﻿using Itemcore.Client.ViewModels;
+﻿using System.Windows;
+using Itemcore.Client.ViewModels;
 using Itemcore.Logging;
 
 namespace Itemcore.Client
@@ -12,6 +13,11 @@ namespace Itemcore.Client
 			: base(loggingService, viewModel)
 		{
 			InitializeComponent();
+		}
+
+		private void ExitApplication(object sender, RoutedEventArgs e)
+		{
+			this.Close();
 		}
 	}
 }

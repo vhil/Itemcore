@@ -40,7 +40,7 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator Height="1" Margin="2" Width="Auto"/>
-				<MenuItem Header="Exit Itemcore"/>
+				<MenuItem Header="Exit Itemcore" Click="ExitApplication"/>
 			</MenuItem>
 			<MenuItem Header="Options">
 				<MenuItem Header="Settings">
