@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C4C0EB5F-75A1-483C-A93F-EFB740AE084E}</ProjectGuid>
+    <ProjectGuid>{E142958E-E2B9-4ECF-BC0B-169BEB40668A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Itemcore.Client.Project</RootNamespace>
-    <AssemblyName>Itemcore.Client.Project</AssemblyName>
+    <RootNamespace>Itemcore.Client.Settings</RootNamespace>
+    <AssemblyName>Itemcore.Client.Settings</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,12 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IItemcoreProjectService.cs" />
-    <Compile Include="ItemcoreProjectService.cs" />
-    <Compile Include="Model\IItemcoreProject.cs" />
-    <Compile Include="Model\IItemcoreSolution.cs" />
-    <Compile Include="Model\ItemcoreProject.cs" />
-    <Compile Include="Model\ItemcoreSolution.cs" />
+    <Compile Include="ClientSettingsService.cs" />
+    <Compile Include="IClientSettingsService.cs" />
+    <Compile Include="Model\IClientSettings.cs" />
+    <Compile Include="Model\ClientSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

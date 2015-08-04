@@ -1,4 +1,6 @@
 ﻿using System;
+using Itemcore.Client.Project;
+using Itemcore.Client.Settings;
 using Itemcore.Client.ViewModels;
 using Itemcore.Logging;
 using Itemcore.Logging.Log4Net;
@@ -24,6 +26,9 @@ namespace Itemcore.Client
 					typeof(ILoggingService),
 					() => new LoggingService(new ILoggingProvider[] {new Log4NetLoggingProvider() }),
 					Lifestyle.Singleton);
+
+			container.Register<IClientSettingsService, ClientSettingsService>(Lifestyle.Singleton);
+			container.Register<IItemcoreProjectService, ItemcoreProjectService>(Lifestyle.Singleton);
 
 			container.Register<MainWindow>();
 			container.Register<MainWindowViewModel>();

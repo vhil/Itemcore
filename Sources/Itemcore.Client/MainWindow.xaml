@@ -21,7 +21,16 @@
 		</Grid.RowDefinitions>
 		<Menu Name="MnMainMenu" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 			<MenuItem Header="File">
-				<MenuItem Header="New Itemcore Project...">
+				<MenuItem Header="Open Itemcore Solution...">
+					<MenuItem.Icon>
+						<Image>
+							<Image.Source>
+								<BitmapImage UriSource="/Itemcore.Client;component/Resources/Images/view.png" />
+							</Image.Source>
+						</Image>
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="New Itemcore Solution...">
 					<MenuItem.Icon>
 						<Image>
 							<Image.Source>
@@ -30,6 +39,8 @@
 						</Image>
 					</MenuItem.Icon>
 				</MenuItem>
+				<Separator Height="1" Margin="2" Width="Auto"/>
+				<MenuItem Header="Exit Itemcore"/>
 			</MenuItem>
 			<MenuItem Header="Options">
 				<MenuItem Header="Settings">

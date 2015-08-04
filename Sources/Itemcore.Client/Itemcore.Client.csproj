@@ -126,6 +126,14 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Itemcore.Client.Project\Itemcore.Client.Project.csproj">
+      <Project>{C4C0EB5F-75A1-483C-A93F-EFB740AE084E}</Project>
+      <Name>Itemcore.Client.Project</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Itemcore.Client.Settings\Itemcore.Client.Settings.csproj">
+      <Project>{E142958E-E2B9-4ECF-BC0B-169BEB40668A}</Project>
+      <Name>Itemcore.Client.Settings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Itemcore.Logging.Log4Net\Itemcore.Logging.Log4Net.csproj">
       <Project>{6807CD63-8FB3-443D-B4E4-208DC532642B}</Project>
       <Name>Itemcore.Logging.Log4Net</Name>
@@ -134,6 +142,16 @@
       <Project>{D24658F9-7C6A-44AA-AE94-BF4D3F1988CE}</Project>
       <Name>Itemcore.Logging</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\view.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
