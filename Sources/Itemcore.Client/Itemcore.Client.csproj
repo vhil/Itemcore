@@ -67,13 +67,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\CreateSolutionUserControl.xaml.cs">
+      <DependentUpon>CreateSolutionUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ItemcoreUserControl.cs" />
-    <Compile Include="UserControls\RecentSolutions.xaml.cs">
-      <DependentUpon>RecentSolutions.xaml</DependentUpon>
+    <Compile Include="UserControls\RecentSolutionsUserControl.xaml.cs">
+      <DependentUpon>RecentSolutionsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\RecentSolutionsViewModel.cs" />
+    <Compile Include="ViewModels\UserControls\CreateSolutionViewModel.cs" />
+    <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\UserControls\RecentSolutionsViewModel.cs" />
     <Compile Include="Windows\ItemcoreWindow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -87,7 +91,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\RecentSolutions.xaml">
+    <Page Include="UserControls\CreateSolutionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RecentSolutionsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +161,10 @@
     <ProjectReference Include="..\Itemcore.Logging\Itemcore.Logging.csproj">
       <Project>{D24658F9-7C6A-44AA-AE94-BF4D3F1988CE}</Project>
       <Name>Itemcore.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Itemcore.ServiceLocator\Itemcore.ServiceLocator.csproj">
+      <Project>{9c533e44-9d9e-444a-aa52-e10fa513305a}</Project>
+      <Name>Itemcore.ServiceLocator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System;
 using Itemcore.Client.Project;
 using Itemcore.Client.Settings;
-using Itemcore.Client.ViewModels;
+using Itemcore.Client.ViewModels.Windows;
 using Itemcore.Logging;
 using Itemcore.Logging.Log4Net;
 using SimpleInjector;
@@ -14,6 +14,8 @@ namespace Itemcore.Client
 		static void Main()
 		{
 			var container = InitializeContainer();
+
+			ServiceLocator.SetContainer(container);
 
 			RunApplication(container);
 		}
@@ -46,7 +48,7 @@ namespace Itemcore.Client
 			try
 			{
 				var app = new App();
-				var mainWindow = container.GetInstance<MainWindow>();
+				var mainWindow = ServiceLocator.Current.GetInstance<MainWindow>();
 				app.Run(mainWindow);
 			}
 			catch (Exception ex)

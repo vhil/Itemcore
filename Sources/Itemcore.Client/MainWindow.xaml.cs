@@ -2,6 +2,8 @@
 using System.Windows;
 using Itemcore.Client.UserControls;
 using Itemcore.Client.ViewModels;
+using Itemcore.Client.ViewModels.UserControls;
+using Itemcore.Client.ViewModels.Windows;
 using Itemcore.Logging;
 
 namespace Itemcore.Client
@@ -16,8 +18,17 @@ namespace Itemcore.Client
 		{
 			InitializeComponent();
 
-			this.GrdMainPanel.Children.Add(new RecentSolutions(this.LoggingService, new RecentSolutionsViewModel(viewModel.ClientSettings)));
+			this.GrdMainPanel.Children.Add(new RecentSolutionsUserControl(this.LoggingService, new RecentSolutionsViewModel(viewModel.ClientSettings)));
 		}
+
+		#region Menu events
+
+		private void OpenSolution(object sender, RoutedEventArgs e)
+		{
+			this.ViewModel.LoadSolution();
+		}
+		
+		#endregion
 
 		protected override void OnClosing(CancelEventArgs e)
 		{
@@ -25,14 +36,8 @@ namespace Itemcore.Client
 			base.OnClosing(e);
 		}
 
-		private void OpenSolution(object sender, RoutedEventArgs e)
-		{
-			this.ViewModel.LoadSolution();
-		}
-
 		private void ExitApplication(object sender, RoutedEventArgs e)
 		{
-			this.ViewModel.SaveSettings();
 			this.Close();
 		}
 	}

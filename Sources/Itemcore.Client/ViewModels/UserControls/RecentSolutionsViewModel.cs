@@ -1,6 +1,6 @@
 ﻿using Itemcore.Client.Settings.Model;
 
-namespace Itemcore.Client.ViewModels
+namespace Itemcore.Client.ViewModels.UserControls
 {
 	public class RecentSolutionsViewModel : BaseViewModel
 	{

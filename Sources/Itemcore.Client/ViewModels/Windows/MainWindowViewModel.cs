@@ -1,11 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using Itemcore.Client.Settings;
+﻿using Itemcore.Client.Settings;
 using Itemcore.Client.Settings.Model;
 using Microsoft.Win32;
 
-namespace Itemcore.Client.ViewModels
+namespace Itemcore.Client.ViewModels.Windows
 {
 	public class MainWindowViewModel : BaseViewModel
 	{
@@ -15,15 +12,6 @@ namespace Itemcore.Client.ViewModels
 		public MainWindowViewModel(IClientSettingsService clientSettingsService)
 		{
 			this.ClientSettingsService = clientSettingsService;
-			this.ClientSettings.PropertyChanged += ClientSettingsOnPropertyChanged;
-		}
-
-		private void ClientSettingsOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-		{
-			if (propertyChangedEventArgs.PropertyName == "RecentSolutions")
-			{
-
-			}
 		}
 
 		public IClientSettings ClientSettings	

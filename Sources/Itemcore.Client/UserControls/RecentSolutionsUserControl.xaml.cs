@@ -1,6 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Itemcore.Client.ViewModels;
+using Itemcore.Client.ViewModels.UserControls;
 using Itemcore.Logging;
 
 namespace Itemcore.Client.UserControls
@@ -8,12 +8,12 @@ namespace Itemcore.Client.UserControls
 	/// <summary>
 	/// Interaction logic for RecentSolutions.xaml
 	/// </summary>
-	public partial class RecentSolutions
+	public partial class RecentSolutionsUserControl
 	{
 		private ILoggingService loggingService;
 		private RecentSolutionsViewModel recentSolutionsViewModel;
 
-		public RecentSolutions(ILoggingService loggingService, RecentSolutionsViewModel viewViewModel) 
+		public RecentSolutionsUserControl(ILoggingService loggingService, RecentSolutionsViewModel viewViewModel) 
 			: base(loggingService, viewViewModel)
 		{
 			InitializeComponent();
