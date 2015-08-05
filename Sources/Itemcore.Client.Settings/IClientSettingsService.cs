@@ -4,7 +4,8 @@ namespace Itemcore.Client.Settings
 {
 	public interface IClientSettingsService
 	{
+		string AppSettingsFilePath { get; }
 		IClientSettings GetClientSettings();
-		void SaveClientSettings();
+		void SaveClientSettings(IClientSettings clientSettings);
 	}
 }

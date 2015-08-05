@@ -51,7 +51,7 @@ namespace Itemcore.Client
 			}
 			catch (Exception ex)
 			{
-				log.Error("Error on application start.", typeof(Program), ex);
+				log.Error("Application error.", typeof(Program), ex);
 			}
 		}
 	}

@@ -1,0 +1,33 @@
+﻿<userControls:ItemcoreUserControl x:TypeArguments="viewModels:RecentSolutionsViewModel" x:Class="Itemcore.Client.UserControls.RecentSolutions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:userControls="clr-namespace:Itemcore.Client.UserControls"
+             xmlns:viewModels="clr-namespace:Itemcore.Client.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<Grid>
+		<Grid.Background>
+			<ImageBrush/>
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="60"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Label Grid.Row="0" Content="Recently Opened Solutions" Height="Auto" Width="Auto" Margin="50,20,50,0" Opacity="0.5" FontSize="18"/>
+		<ListBox  Grid.Row="1" Name="lbContainer" Height="Auto" Width="Auto" Padding="50,0,50,50" Margin="0,0,0,0" BorderBrush="Transparent">
+			<ListBox.Resources>
+				<BitmapImage x:Key="SolutionIcon" UriSource="/Itemcore.Client;component/Resources/Images/itemcore24x24.png" />
+			</ListBox.Resources>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{StaticResource SolutionIcon}"/>
+						<TextBlock ToolTip="{Binding Path=Path}" Padding="10" Text="{Binding Path=SolutionName}" FontSize="18" />
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</userControls:ItemcoreUserControl>

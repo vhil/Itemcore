@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Itemcore.Client.Settings.Model
 {
-	public interface IClientSettings
+	public interface IClientSettings : INotifyPropertyChanged
 	{
-		string LastOpenedProjectLocation { get; set; }
-		IEnumerable<string> RecentSolutions { get; set; } 
+		string LastOpenedSolutionLocation { get; set; }
+		ICollection<RecentSolution> RecentSolutions { get; }
+		void AddRecentSolution(string filePath);
 	}
 }
