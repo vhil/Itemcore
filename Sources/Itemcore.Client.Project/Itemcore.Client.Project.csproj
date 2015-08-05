@@ -44,10 +44,14 @@
   <ItemGroup>
     <Compile Include="IItemcoreProjectService.cs" />
     <Compile Include="ItemcoreProjectService.cs" />
+    <Compile Include="Model\IItemcoreItem.cs" />
     <Compile Include="Model\IItemcoreProject.cs" />
     <Compile Include="Model\IItemcoreSolution.cs" />
+    <Compile Include="Model\IItemcoreSolutionProject.cs" />
+    <Compile Include="Model\ItemcoreItem.cs" />
     <Compile Include="Model\ItemcoreProject.cs" />
     <Compile Include="Model\ItemcoreSolution.cs" />
+    <Compile Include="Model\ItemcoreSolutionProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
