@@ -6,7 +6,7 @@ namespace Itemcore.Client.Settings.Model
 	public interface IClientSettings : INotifyPropertyChanged
 	{
 		string LastOpenedSolutionLocation { get; set; }
-		ICollection<RecentSolution> RecentSolutions { get; }
+		IEnumerable<IRecentSolution> RecentSolutions { get; }
 		void AddRecentSolution(string filePath);
 	}
 }

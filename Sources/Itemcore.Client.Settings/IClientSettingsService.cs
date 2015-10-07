@@ -6,6 +6,6 @@ namespace Itemcore.Client.Settings
 	{
 		string AppSettingsFilePath { get; }
 		IClientSettings GetClientSettings();
-		void SaveClientSettings(IClientSettings clientSettings);
+		void SaveClientSettings();
 	}
 }

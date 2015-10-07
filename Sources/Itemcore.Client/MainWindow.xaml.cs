@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Windows;
-using Itemcore.Client.UserControls;
-using Itemcore.Client.ViewModels;
-using Itemcore.Client.ViewModels.UserControls;
-using Itemcore.Client.ViewModels.Windows;
-using Itemcore.Logging;
+using Itemcore.Client.Controls;
+using Itemcore.Client.Project;
+using Itemcore.Client.Project.Model;
+using Itemcore.Client.Views.Windows;
 
 namespace Itemcore.Client
 {
@@ -13,12 +12,21 @@ namespace Itemcore.Client
 	/// </summary>
 	public partial class MainWindow
 	{
-		public MainWindow(ILoggingService loggingService, MainWindowViewModel viewModel)
-			: base(loggingService, viewModel)
-		{
-			InitializeComponent();
+		protected readonly IProjectFactory projectFactory;
 
-			this.GrdMainPanel.Children.Add(new RecentSolutionsUserControl(this.LoggingService, new RecentSolutionsViewModel(viewModel.ClientSettings)));
+		public MainWindow()
+			: base(ServiceLocator.Container.GetInstance<MainWindowViewModel>())
+		{
+			this.projectFactory = ServiceLocator.Container.GetInstance<IProjectFactory>();
+			this.InitializeComponent();
+
+			this.LoadRecentSolutionsView();
+		}
+
+		private void LoadRecentSolutionsView()
+		{
+			this.GrdMainPanel.Children.Clear();
+			this.GrdMainPanel.Children.Add(new RecentSolutions());
 		}
 
 		#region Menu events
@@ -27,7 +35,23 @@ namespace Itemcore.Client
 		{
 			this.ViewModel.LoadSolution();
 		}
-		
+
+		private void CreateSolution(object sender, RoutedEventArgs e)
+		{
+			var createSolutionUserControl = new CreateSolution();
+
+			createSolutionUserControl.Cancelled += LoadRecentSolutionsView;
+			createSolutionUserControl.Succeed += CreateSolutionUserControlOnSucceed;
+			this.GrdMainPanel.Children.Clear();
+
+			this.GrdMainPanel.Children.Add(createSolutionUserControl);
+		}
+
+		private void CreateSolutionUserControlOnSucceed(ISolution model)
+		{
+				
+		}
+
 		#endregion
 
 		protected override void OnClosing(CancelEventArgs e)
@@ -40,5 +64,7 @@ namespace Itemcore.Client
 		{
 			this.Close();
 		}
+
+		
 	}
 }

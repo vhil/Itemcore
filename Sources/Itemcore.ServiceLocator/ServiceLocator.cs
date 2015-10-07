@@ -11,7 +11,7 @@ namespace Itemcore
 			_instance = container;
 		}
 
-		public static Container Current
+		public static Container Container
 		{
 			get { return _instance; }
 		}

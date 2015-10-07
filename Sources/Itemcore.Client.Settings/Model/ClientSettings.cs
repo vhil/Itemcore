@@ -16,17 +16,13 @@ namespace Itemcore.Client.Settings.Model
 		public ClientSettings()
 		{
 			this.LastOpenedSolutionLocation = string.Empty;
-			this.recentSolutions = new List<RecentSolution>();
 		}
 
 		[XmlElement("lastSolutionLocation")]
 		public string LastOpenedSolutionLocation { get; set; }
 
 		[XmlIgnore]
-		public ICollection<RecentSolution> RecentSolutions
-		{
-			get { return recentSolutions; }
-		}
+		public IEnumerable<IRecentSolution> RecentSolutions { get; set; }
 
 		public void AddRecentSolution(string filePath)
 		{
@@ -44,26 +40,41 @@ namespace Itemcore.Client.Settings.Model
 				recentSolutions.Remove(existingSolution);
 			}
 
-			recentSolutions.Add(newSolution);
+			recentSolutions.Insert(0, newSolution);
 
 			if (directory != null)
 			{
 				this.LastOpenedSolutionLocation = directory.FullName;
 			}
 
-			recentSolutions = recentSolutions.OrderByDescending(x => x.Timestamp).Take(5).ToList();
+			this.RemoveNotExistingSolutions();
 
-			OnPropertyChanged("RecentSolutions");
+			recentSolutions = recentSolutions.OrderByDescending(x => x.Timestamp).ToList();
+
+			this.OnRecentSlotionListChanged("RecentSolutions");
 		}
 
 		[XmlArray("recentSolutions")]
 		[XmlArrayItem("solution")]
-		public List<RecentSolution> recentSolutions { get; set; }
+		public List<RecentSolution> recentSolutions
+		{
+			get { return this.RecentSolutions as List<RecentSolution>; }
+			set { this.RecentSolutions = value; }
+		}
+
+		private void RemoveNotExistingSolutions()
+		{
+			var notExisting = recentSolutions.Where(x => !File.Exists(x.Path)).ToArray();
+			foreach (var toRemove in notExisting)
+			{
+				recentSolutions.Remove(toRemove);
+			}
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		protected virtual void OnRecentSlotionListChanged([CallerMemberName] string propertyName = null)
 		{
 			var handler = PropertyChanged;
 			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));

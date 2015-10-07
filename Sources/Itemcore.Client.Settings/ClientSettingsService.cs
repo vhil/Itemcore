@@ -9,7 +9,10 @@ namespace Itemcore.Client.Settings
 {
 	public class ClientSettingsService : IClientSettingsService
 	{
+		private object serializationSyncRoot = new object();
+
 		private readonly ILoggingService LoggingService;
+		private IClientSettings clientSettings;
 
 		public ClientSettingsService(ILoggingService loggingService)
 		{
@@ -27,42 +30,40 @@ namespace Itemcore.Client.Settings
 
 		public IClientSettings GetClientSettings()
 		{
-			var filePath = this.AppSettingsFilePath;
-			if (!File.Exists(filePath))
+			lock (serializationSyncRoot)
 			{
-				return new ClientSettings();
-			}
-			IClientSettings clientSettings;
-			using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-			{
-				var serializer = new XmlSerializer(typeof (ClientSettings));
-				clientSettings = serializer.Deserialize(fs) as ClientSettings ?? new ClientSettings();
-			}
+				if (clientSettings == null)
+				{
+					var filePath = this.AppSettingsFilePath;
+					if (!File.Exists(filePath))
+					{
+						return new ClientSettings();
+					}
 
-			this.RemoveNotExistingSolutions(clientSettings);
+					using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+					{
+						var serializer = new XmlSerializer(typeof(ClientSettings));
+						clientSettings = serializer.Deserialize(fs) as ClientSettings;
+					}
 
-			return clientSettings;
-		}
+				}
 
-		private void RemoveNotExistingSolutions(IClientSettings settings)
-		{
-			var notExisting = settings.RecentSolutions.Where(x => !File.Exists(x.Path)).ToArray();
-			foreach (var toRemove in notExisting)
-			{
-				settings.RecentSolutions.Remove(toRemove);
+				return clientSettings ?? new ClientSettings();;
 			}
 		}
 
-		public void SaveClientSettings(IClientSettings clientSettings)
+		public void SaveClientSettings()
 		{
-			this.RemoveNotExistingSolutions(clientSettings);
-
-			var filePath = this.AppSettingsFilePath;
-
-			using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write))
+			lock (serializationSyncRoot)
 			{
-				var serializer = new XmlSerializer(typeof(ClientSettings));
-				serializer.Serialize(fs, clientSettings);
+
+				var filePath = this.AppSettingsFilePath;
+
+				using (var fs = new FileStream(filePath, FileMode.Truncate, FileAccess.Write, FileShare.Write))
+				{
+					var serializer = new XmlSerializer(typeof(ClientSettings));
+					serializer.Serialize(fs, clientSettings);
+				}
 			}
 		}
 	}
